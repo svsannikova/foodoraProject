@@ -5,8 +5,13 @@ instructions to install and configure the setup. Finally set the PATH and JAVA_H
 environment variables to refer to the directory that contains Java and Javac.
 
 install git
+
 clone the project
+
 Open a Terminal or Command Prompt window.
+
 Change into the project directory like: cd C:\path\foodoraProject
+
 Compile the project: mvn clean compile
+
 Execute the project: mvn exec:java
