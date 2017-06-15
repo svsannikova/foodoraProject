@@ -21,10 +21,49 @@ public class Customers {
 		customerList.add(customer);
 		customerList.add(customer2);
 	}
-	private Customers(){};
+	public Customers(){};
 	
 	public static ArrayList<Customer> getCustomers(){
 		return customerList;
 	}
 	
+	public int addCustomer(Customer nCustomer){ 
+	      ArrayList<Customer> customerList = getCustomers(); 
+	      boolean Exists = false; 
+	      for(Customer customer: customerList){ 
+	         if(customer.getId() == nCustomer.getId()){ 
+	            Exists = true; 
+	            break; 
+	         } 
+	      }   
+	      if(!Exists){ 
+	         customerList.add(nCustomer); 
+	         return 1; 
+	      } 
+	      return 0; 
+	   } 
+	
+	public int updateCustomer(Customer nCustomer){ 
+	      ArrayList<Customer> customerList = getCustomers();  
+	      for(Customer customer: customerList){ 
+	         if(customer.getId() == nCustomer.getId()){ 
+	        	 int index = customerList.indexOf(customer);    
+	             customerList.set(index, nCustomer); 
+	             return 1;	             
+	         } 
+	      } 
+	      return 0; 
+	   } 
+	
+	public int deleteCustomer(long id){ 
+	      ArrayList<Customer> customerList = getCustomers();  
+	      for(Customer customer: customerList){ 
+	         if(customer.getId() == id){ 
+	        	 int index = customerList.indexOf(customer);    
+	             customerList.remove(index); 
+	             return 1;	             
+	         } 
+	      } 
+	      return 0; 
+	   } 
 }
