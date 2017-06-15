@@ -46,7 +46,7 @@ ObjectMapper mapper = new ObjectMapper();
     if (match!=null) {
     	Customer customer = match.get();
     	String outString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(customer);
-      return "---Customer---\n" + outString;
+      return outString;
     } else {
       return "Customer not found";
     }
