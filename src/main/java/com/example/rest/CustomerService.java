@@ -36,6 +36,7 @@ ObjectMapper mapper = new ObjectMapper();
     return outString;
   }
 
+  @RolesAllowed({"ADMIN", "AUTHORIZED_USER"})
   @GET
   @Path("{id}")
   @Produces({"application/json"})
@@ -57,19 +58,19 @@ ObjectMapper mapper = new ObjectMapper();
      @FormParam("firstName") String first, 
      @FormParam("lastName") String last,
      @FormParam("email") String mail,
+     @FormParam("password") String password,
      @FormParam("city") String city,
      @FormParam("streetName") String street,
      @FormParam("streetNum") String streetNum,
      @FormParam("zip") String zip){
-	 Customer customer = new Customer(id, first, last, mail, city, street, streetNum, zip);
+	 Customer customer = new Customer(id, first, last, mail,password, city, street, streetNum, zip);
 	 int status = customers.addCustomer(customer);
 	 if(status == 1){
 		 return "created";
 	 }
-	 return "fail";
-	 
-     
+	 return "fail";  
   } 
+  @RolesAllowed({"ADMIN", "AUTHORIZED_USER"})
   @PUT
   @Path("{id}") 
   @Consumes(MediaType.APPLICATION_FORM_URLENCODED) 
@@ -77,11 +78,12 @@ ObjectMapper mapper = new ObjectMapper();
      @FormParam("firstName") String first, 
      @FormParam("lastName") String last,
      @FormParam("email") String mail,
+     @FormParam("password") String password,
      @FormParam("city") String city,
      @FormParam("streetName") String street,
      @FormParam("streetNum") String streetNum,
      @FormParam("zip") String zip){
-	 Customer customer = new Customer(id, first, last, mail, city, street, streetNum, zip);
+	 Customer customer = new Customer(id, first, last, mail, password, city, street, streetNum, zip);
 	 int status = customers.updateCustomer(customer);
 	 if(status == 1){
 		 return "updated";
@@ -89,6 +91,7 @@ ObjectMapper mapper = new ObjectMapper();
 	 return "fail"; 
      
   } 
+  @RolesAllowed({"ADMIN", "AUTHORIZED_USER"})
   @DELETE
   @Path("{id}")  
   @Produces({"application/json"})

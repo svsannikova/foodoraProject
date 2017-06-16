@@ -1,9 +1,11 @@
 package com.example.rest;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.StringTokenizer;
 
@@ -38,6 +40,7 @@ public class AuthenticationFilter implements javax.ws.rs.container.ContainerRequ
 	@Override
 	public void filter(ContainerRequestContext requestContext)
 	{
+				
 		Method method = resourceInfo.getResourceMethod();
 		if( ! method.isAnnotationPresent(PermitAll.class))
 		{
@@ -62,7 +65,9 @@ public class AuthenticationFilter implements javax.ws.rs.container.ContainerRequ
 			final StringTokenizer tokenizer = new StringTokenizer(usernameAndPassword, ":");
 			final String username = tokenizer.nextToken();
 			final String password = tokenizer.nextToken();
+			final Integer userId = getUserIdFromRequest(requestContext.getUriInfo().getPath());
 
+			System.out.println(userId);
 			System.out.println(username);
 			System.out.println(password);
 
@@ -70,31 +75,65 @@ public class AuthenticationFilter implements javax.ws.rs.container.ContainerRequ
 			{
 				RolesAllowed rolesAnnotation = method.getAnnotation(RolesAllowed.class);
 				Set<String> rolesSet = new HashSet<String>(Arrays.asList(rolesAnnotation.value()));
-
-				if( ! isUserAllowed(username, password, rolesSet))
-				{
-					requestContext.abortWith(ACCESS_DENIED_TO_USER);
-					return;
+				if(userId!=null){
+					if( ! isUserAllowed(userId, username, password, rolesSet))
+					{
+						requestContext.abortWith(ACCESS_DENIED_TO_USER);
+						return;
+					}
+				}else{
+					if( ! isAdminAllowed(username, password, rolesSet))
+					{
+						requestContext.abortWith(ACCESS_DENIED_TO_USER);
+						return;
+					}
 				}
+				
 			}
 		}
 	}
-	private boolean isUserAllowed(final String username, final String password, final Set<String> rolesSet)
+	
+	private Integer getUserIdFromRequest(String path){
+		String[] parts = path.split("/");
+		try{
+			return Integer.parseInt(parts[parts.length-1]);
+		}catch(NumberFormatException e){			
+			return null;
+		}
+	}
+	private boolean isAdminAllowed(String username, String password, Set<String> rolesSet)
 	{
+
+		String adminRole = "ADMIN";
 		boolean isAllowed = false;
-
 		
-
 		if(username.equals("admin") && password.equals("admin"))
-		{
-			String userRole = "ADMIN";
+		{			
 
-			//Step 2. Verify user role
-			if(rolesSet.contains(userRole))
+			if(rolesSet.contains(adminRole))
 			{
-				isAllowed = true;
+				return true;
 			}
 		}
+		return isAllowed;
+	}
+	private boolean isUserAllowed(final Integer userId, String username, String password, Set<String> rolesSet)
+	{
+		String userRole = "AUTHORIZED_USER";
+		boolean isAllowed = false;
+		ArrayList<Customer> customerList = Customers.getCustomers();
+		Optional<Customer> customer = customerList.stream().filter(c->c.getId()==userId).findFirst();
+		if(userId!=null&&customer!=null){
+			
+			if(customer.get().getEmail().equals(username) && customer.get().getPassword().equals(password)){
+				if(rolesSet.contains(userRole)){
+					return true;
+				}				
+				
+			}
+		}
+			
+		isAllowed= isAdminAllowed(username, password, rolesSet);
 		return isAllowed;
 	}
 }
