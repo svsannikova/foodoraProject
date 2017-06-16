@@ -1,18 +1,15 @@
 package com.example.rest;
 
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
-import javax.ws.rs.OPTIONS;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -29,7 +26,8 @@ Customers customers = new Customers();
 
 private ArrayList<Customer> cList = Customers.getCustomers();
 ObjectMapper mapper = new ObjectMapper();
-  
+
+  @RolesAllowed("ADMIN")
   @GET
   @Path("/all")
   @Produces({"application/json"})
@@ -103,7 +101,5 @@ ObjectMapper mapper = new ObjectMapper();
      
   } 
   
-  
- 
  
 }
