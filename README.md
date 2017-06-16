@@ -15,3 +15,14 @@ Change into the project directory like: cd C:\path\foodoraProject
 Compile the project: mvn clean compile
 
 Execute the project: mvn exec:java
+
+Run tests: mvn test
+
+for testing API:
+
+GET/PUT/DELETE localhost:8080/myapp/customers/1
+access: Admin(admin:admin), User(john.smith@gmail.com:password)
+
+GET localhost:8080/myapp/customers/all
+access: Admin(admin:admin)
+

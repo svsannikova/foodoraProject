@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -51,6 +52,7 @@ ObjectMapper mapper = new ObjectMapper();
     }
   }
   
+  @PermitAll
   @POST
   @Path("") 
   @Consumes(MediaType.APPLICATION_FORM_URLENCODED) 
