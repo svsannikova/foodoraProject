@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: com.example.rest.CustomerServiceTest
+Test set: com.example.rest.CustomersTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.988 sec
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 sec

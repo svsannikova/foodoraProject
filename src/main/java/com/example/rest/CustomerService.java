@@ -17,6 +17,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
@@ -55,17 +56,9 @@ ObjectMapper mapper = new ObjectMapper();
   @PermitAll
   @POST
   @Path("") 
-  @Consumes(MediaType.APPLICATION_FORM_URLENCODED) 
-  public String createCustomer(@FormParam("id") int id, 
-     @FormParam("firstName") String first, 
-     @FormParam("lastName") String last,
-     @FormParam("email") String mail,
-     @FormParam("password") String password,
-     @FormParam("city") String city,
-     @FormParam("streetName") String street,
-     @FormParam("streetNum") String streetNum,
-     @FormParam("zip") String zip){
-	 Customer customer = new Customer(id, first, last, mail,password, city, street, streetNum, zip);
+  @Consumes(MediaType.APPLICATION_JSON) 
+  public String createCustomer(String json) throws JsonParseException, JsonMappingException, IOException{
+	  Customer customer=mapper.readValue(json, Customer.class);
 	 int status = customers.addCustomer(customer);
 	 if(status == 1){
 		 return "created";
@@ -75,17 +68,9 @@ ObjectMapper mapper = new ObjectMapper();
   @RolesAllowed({"ADMIN", "AUTHORIZED_USER"})
   @PUT
   @Path("{id}") 
-  @Consumes(MediaType.APPLICATION_FORM_URLENCODED) 
-  public String updateCustomer(@FormParam("id") int id, 
-     @FormParam("firstName") String first, 
-     @FormParam("lastName") String last,
-     @FormParam("email") String mail,
-     @FormParam("password") String password,
-     @FormParam("city") String city,
-     @FormParam("streetName") String street,
-     @FormParam("streetNum") String streetNum,
-     @FormParam("zip") String zip){
-	 Customer customer = new Customer(id, first, last, mail, password, city, street, streetNum, zip);
+  @Consumes(MediaType.APPLICATION_JSON) 
+  public String updateCustomer(String json) throws JsonParseException, JsonMappingException, IOException{
+	  Customer customer=mapper.readValue(json, Customer.class);
 	 int status = customers.updateCustomer(customer);
 	 if(status == 1){
 		 return "updated";

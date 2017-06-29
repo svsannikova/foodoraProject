@@ -83,9 +83,8 @@ public class CustomerServiceTest {
     }
     @Test
     public void createNewCustomerTest() throws JsonParseException, JsonMappingException, IOException {
-    	Form form = new Form();
-    	form.param("id", "6").param("firstName", "Test").param("password", "password").param("email", "mail");
-        Response responseMsg = target.path("customers").request().post(Entity.form(form));  
+    	String jsonString = "{\"id\": 6,\"firstName\": \"Name\", \"email\": \"mail\", \"password\": \"password\"}";    	
+        Response responseMsg = target.path("customers").request().post(Entity.json(jsonString));  
         System.out.println(responseMsg.toString());
         assertEquals(200, responseMsg.getStatus());
     }
@@ -94,9 +93,8 @@ public class CustomerServiceTest {
     public void updateCustomerTest() throws JsonParseException, JsonMappingException, IOException {
     	String pass="admin:admin";
     	String key= "Basic " + DatatypeConverter.printBase64Binary(pass.getBytes("UTF-8"));
-    	Form form = new Form();
-    	form.param("id", "6").param("firstName", "NewName").param("password", "password").param("email", "mail");
-        Response responseMsg = target.path("customers/6").request().header(HttpHeaders.AUTHORIZATION, key).put(Entity.form(form));  
+    	String jsonString = "{\"id\": 6,\"firstName\": \"NewName\", \"email\": \"mail\", \"password\": \"password\"}";
+        Response responseMsg = target.path("customers/6").request().header(HttpHeaders.AUTHORIZATION, key).put(Entity.json(jsonString));  
         ArrayList<Customer> updatedList = Customers.getCustomers();
         Optional<Customer> updatedCustomer=updatedList.stream().filter(c->c.getId()==6).findFirst();
         assertEquals("NewName", updatedCustomer.get().getFirstName());
