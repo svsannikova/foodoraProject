@@ -18,20 +18,44 @@ public class CustomersTest {
         assertEquals(1, result);
     }
 	@Test
+	 public void addExistingCustomerTest()  {  
+		Customer customer = new Customer(5, "Name", null, "mail", "password", null, null, null, null);
+		
+		int result = customerList.addCustomer(customer);
+      
+       assertEquals(0, result);
+   }
+	@Test
 	 public void updateCustomerTest()  {  
-		Customer customer = new Customer(6, "NewName", null, "mail", "password", null, null, null, null);
+		Customer customer = new Customer(1, "NewName", null, "mail", "password", null, null, null, null);
 		
 		int result = customerList.updateCustomer(customer);
       
        assertEquals(1, result);
    }
 	@Test
+	 public void updateNotExistingCustomerTest()  {  
+		Customer customer = new Customer(7, "NewName", null, "mail", "password", null, null, null, null);
+		
+		int result = customerList.updateCustomer(customer);
+     
+      assertEquals(0, result);
+  }
+	
+	@Test
 	 public void deleteCustomerTest()  {  
 		
-		int result = customerList.deleteCustomer(6);
+		int result = customerList.deleteCustomer(5);
      
       assertEquals(1, result);
   }
+	@Test
+	 public void deleteNotExistingCustomerTest()  {  
+		
+		int result = customerList.deleteCustomer(8);
+    
+     assertEquals(0, result);
+ }
     
 	
 

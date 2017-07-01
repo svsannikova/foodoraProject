@@ -9,11 +9,11 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 
 import org.glassfish.grizzly.http.server.HttpServer;
-import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
+
+import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -68,7 +68,6 @@ public class CustomerServiceTest {
         ArrayList<Customer> list = mapper.readValue(responseMsg,
         		TypeFactory.defaultInstance().constructCollectionType(ArrayList.class,  
         		   Customer.class));
-        System.out.println("getAll success");
         assertEquals(2, list.size());
     }
     
@@ -77,7 +76,6 @@ public class CustomerServiceTest {
     	String pass="admin:admin";
     	String key= "Basic " + DatatypeConverter.printBase64Binary(pass.getBytes("UTF-8"));
         String responseMsg = target.path("customers/1").request().header(HttpHeaders.AUTHORIZATION, key).get(String.class);
-        System.out.println(responseMsg);
         Customer list = mapper.readValue(responseMsg, Customer.class);
         assertEquals("John", list.getFirstName());
     }
@@ -104,12 +102,34 @@ public class CustomerServiceTest {
     public void deleteCustomerTest() throws JsonParseException, JsonMappingException, IOException {
     	String pass="admin:admin";
     	String key= "Basic " + DatatypeConverter.printBase64Binary(pass.getBytes("UTF-8"));
-    	ArrayList<Customer> oldList = Customers.getCustomers();
-    	System.out.println("Old size "+oldList.size());
         Response responseMsg = target.path("customers/6").request().header(HttpHeaders.AUTHORIZATION, key).delete(); 
         ArrayList<Customer> newList = Customers.getCustomers();
-    	System.out.println("New size "+newList.size());
         assertEquals(2, newList.size());
     }
+    @Test
+    public void getAllCustomersNotAuthorizedTest() throws JsonParseException, JsonMappingException, IOException {
+    	String pass="admin:noadmin";
+    	String key= "Basic " + DatatypeConverter.printBase64Binary(pass.getBytes("UTF-8"));
+    	Response responseMsg = target.path("customers/all").request().header(HttpHeaders.AUTHORIZATION, key).get(Response.class);
+        assertEquals(401, responseMsg.getStatus());
+    }
+    @Test
+    public void getCustomerByIdAsCustomerTest() throws JsonParseException, JsonMappingException, IOException {
+    	String pass="a.example@gmail.com:password";
+    	String key= "Basic " + DatatypeConverter.printBase64Binary(pass.getBytes("UTF-8"));
+        String responseMsg = target.path("customers/5").request().header(HttpHeaders.AUTHORIZATION, key).get(String.class);
+        Customer list = mapper.readValue(responseMsg, Customer.class);
+        assertEquals("Another", list.getFirstName());
+    }
+    @Test
+    public void getOtherCustomerByIdAsCustomerTest() throws JsonParseException, JsonMappingException, IOException {
+    	String pass="a.example@gmail.com:password";
+    	String key= "Basic " + DatatypeConverter.printBase64Binary(pass.getBytes("UTF-8"));
+        Response responseMsg = target.path("customers/1").request().header(HttpHeaders.AUTHORIZATION, key).get(Response.class);
+        System.out.println(responseMsg);
+        assertEquals(401, responseMsg.getStatus());
+    }
+  
+    
     
 }
