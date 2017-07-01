@@ -3,9 +3,7 @@ package com.example.rest;
 import java.util.ArrayList;
 import javax.ws.rs.Path;
 
-/**
- * Root resource (exposed at "myresource" path)
- */
+
 @Path("myresource")
 public class Customers {
 	private static ArrayList<Customer> customerList = new ArrayList<Customer>();

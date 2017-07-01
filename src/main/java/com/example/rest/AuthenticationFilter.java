@@ -12,6 +12,8 @@ import java.util.StringTokenizer;
 import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
+import javax.ws.rs.ForbiddenException;
+import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ResourceInfo;
 import javax.ws.rs.core.Context;
@@ -30,24 +32,16 @@ public class AuthenticationFilter implements javax.ws.rs.container.ContainerRequ
 
 	private static final String AUTHORIZATION_PROPERTY = "Authorization";
 	private static final String AUTHENTICATION_SCHEME = "Basic";
-	private static final Response ACCESS_DENIED = Response.status(Response.Status.UNAUTHORIZED)
-			.entity("You are not authorized").build();
-	private static final Response ACCESS_DENIED_TO_USER = Response.status(Response.Status.UNAUTHORIZED)
-			.entity("Access blocked for this user").build();
-	private static final Response ACCESS_FORBIDDEN = Response.status(Response.Status.FORBIDDEN)
-			.entity("Access blocked").build();
-
 	@Override
 	public void filter(ContainerRequestContext requestContext)
 	{
-				
+
 		Method method = resourceInfo.getResourceMethod();
 		if( ! method.isAnnotationPresent(PermitAll.class))
 		{
 			if(method.isAnnotationPresent(DenyAll.class))
 			{
-				requestContext.abortWith(ACCESS_FORBIDDEN);
-				return;
+				throw new ForbiddenException("Access blocked");
 			}
 			final MultivaluedMap<String, String> headers = requestContext.getHeaders();
 
@@ -55,8 +49,7 @@ public class AuthenticationFilter implements javax.ws.rs.container.ContainerRequ
 
 			if(authorization == null || authorization.isEmpty())
 			{
-				requestContext.abortWith(ACCESS_DENIED);
-				return;
+				throw new NotAuthorizedException("You are not authorized");
 			}
 			final String encodedUserPassword = authorization.get(0).replaceFirst(AUTHENTICATION_SCHEME + " ", "");
 
@@ -65,48 +58,48 @@ public class AuthenticationFilter implements javax.ws.rs.container.ContainerRequ
 			final StringTokenizer tokenizer = new StringTokenizer(usernameAndPassword, ":");
 			final String username = tokenizer.nextToken();
 			final String password = tokenizer.nextToken();
-			final Integer userId = getUserIdFromRequest(requestContext.getUriInfo().getPath());
+			final int userId = getUserIdFromRequest(requestContext.getUriInfo().getPath());
 
-			System.out.println(userId);
-			System.out.println(username);
-			System.out.println(password);
 
 			if(method.isAnnotationPresent(RolesAllowed.class))
 			{
 				RolesAllowed rolesAnnotation = method.getAnnotation(RolesAllowed.class);
 				Set<String> rolesSet = new HashSet<String>(Arrays.asList(rolesAnnotation.value()));
-				if(userId!=null){
-					if( ! isUserAllowed(userId, username, password, rolesSet))
-					{
-						requestContext.abortWith(ACCESS_DENIED_TO_USER);
-						return;
-					}
-				}else{
-					if( ! isAdminAllowed(username, password, rolesSet))
-					{
-						requestContext.abortWith(ACCESS_DENIED_TO_USER);
-						return;
-					}
+				if( ! isUserAllowed(userId, username, password, rolesSet))
+				{
+					throw new NotAuthorizedException("Access blocked for this user");
 				}
-				
+
+
 			}
 		}
 	}
-	
-	private Integer getUserIdFromRequest(String path){
+
+	private int getUserIdFromRequest(String path){
 		String[] parts = path.split("/");
 		try{
 			return Integer.parseInt(parts[parts.length-1]);
 		}catch(NumberFormatException e){			
-			return null;
+			return 0;
 		}
 	}
-	private boolean isAdminAllowed(String username, String password, Set<String> rolesSet)
+	private boolean isUserAllowed(final int userId, String username, String password, Set<String> rolesSet)
 	{
-
-		String adminRole = "ADMIN";
+		String userRole = "AUTHORIZED_USER";
 		boolean isAllowed = false;
-		
+		ArrayList<Customer> customerList = Customers.getCustomers();
+		Optional<Customer> customer = customerList.stream().filter(c->c.getId()==userId).findFirst();
+		if(userId!=0&&customer!=null){
+
+			if(customer.get().getEmail().equals(username) && customer.get().getPassword().equals(password)){
+				if(rolesSet.contains(userRole)){
+					return true;
+				}				
+
+			}
+		}
+		String adminRole = "ADMIN";
+
 		if(username.equals("admin") && password.equals("admin"))
 		{			
 
@@ -115,25 +108,7 @@ public class AuthenticationFilter implements javax.ws.rs.container.ContainerRequ
 				return true;
 			}
 		}
-		return isAllowed;
-	}
-	private boolean isUserAllowed(final Integer userId, String username, String password, Set<String> rolesSet)
-	{
-		String userRole = "AUTHORIZED_USER";
-		boolean isAllowed = false;
-		ArrayList<Customer> customerList = Customers.getCustomers();
-		Optional<Customer> customer = customerList.stream().filter(c->c.getId()==userId).findFirst();
-		if(userId!=null&&customer!=null){
-			
-			if(customer.get().getEmail().equals(username) && customer.get().getPassword().equals(password)){
-				if(rolesSet.contains(userRole)){
-					return true;
-				}				
-				
-			}
-		}
-			
-		isAllowed= isAdminAllowed(username, password, rolesSet);
+
 		return isAllowed;
 	}
 }
