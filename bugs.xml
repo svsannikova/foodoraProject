@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="3.0.2-dev-20160306-90c514b" sequence="1" timestamp="1498917894130" analysisTimestamp="1498917887166" release="">
+  <Project projectName="jersey-service">
+    <Jar>C:\Users\svsannik\workspace\foodoraTest\foodoraProject\foodoraProject\target\classes</Jar>
+    <Jar>C:\Users\svsannik\workspace\foodoraTest\foodoraProject\foodoraProject\target\test-classes</Jar>
+    <AuxClasspathEntry>C:\Users\svsannik\workspace\foodoraTest\foodoraProject\foodoraProject\target\classes</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\svsannik\workspace\foodoraTest\foodoraProject\foodoraProject\target\test-classes</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\svsannik\.m2\repository\org\glassfish\jersey\containers\jersey-container-grizzly2-http\2.17\jersey-container-grizzly2-http-2.17.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\svsannik\.m2\repository\org\glassfish\hk2\external\javax.inject\2.4.0-b10\javax.inject-2.4.0-b10.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\svsannik\.m2\repository\org\glassfish\grizzly\grizzly-http-server\2.3.16\grizzly-http-server-2.3.16.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\svsannik\.m2\repository\org\glassfish\grizzly\grizzly-http\2.3.16\grizzly-http-2.3.16.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\svsannik\.m2\repository\org\glassfish\grizzly\grizzly-framework\2.3.16\grizzly-framework-2.3.16.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\svsannik\.m2\repository\org\glassfish\jersey\core\jersey-common\2.17\jersey-common-2.17.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\svsannik\.m2\repository\javax\annotation\javax.annotation-api\1.2\javax.annotation-api-1.2.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\svsannik\.m2\repository\org\glassfish\jersey\bundles\repackaged\jersey-guava\2.17\jersey-guava-2.17.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\svsannik\.m2\repository\org\glassfish\hk2\hk2-api\2.4.0-b10\hk2-api-2.4.0-b10.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\svsannik\.m2\repository\org\glassfish\hk2\hk2-utils\2.4.0-b10\hk2-utils-2.4.0-b10.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\svsannik\.m2\repository\org\glassfish\hk2\external\aopalliance-repackaged\2.4.0-b10\aopalliance-repackaged-2.4.0-b10.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\svsannik\.m2\repository\org\glassfish\hk2\hk2-locator\2.4.0-b10\hk2-locator-2.4.0-b10.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\svsannik\.m2\repository\org\javassist\javassist\3.18.1-GA\javassist-3.18.1-GA.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\svsannik\.m2\repository\org\glassfish\hk2\osgi-resource-locator\1.0.1\osgi-resource-locator-1.0.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\svsannik\.m2\repository\org\glassfish\jersey\core\jersey-server\2.17\jersey-server-2.17.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\svsannik\.m2\repository\org\glassfish\jersey\core\jersey-client\2.17\jersey-client-2.17.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\svsannik\.m2\repository\org\glassfish\jersey\media\jersey-media-jaxb\2.17\jersey-media-jaxb-2.17.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\svsannik\.m2\repository\javax\validation\validation-api\1.1.0.Final\validation-api-1.1.0.Final.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\svsannik\.m2\repository\javax\ws\rs\javax.ws.rs-api\2.0.1\javax.ws.rs-api-2.0.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\svsannik\.m2\repository\junit\junit\4.9\junit-4.9.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\svsannik\.m2\repository\org\hamcrest\hamcrest-core\1.1\hamcrest-core-1.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\svsannik\.m2\repository\org\codehaus\jackson\jackson-mapper-asl\1.9.13\jackson-mapper-asl-1.9.13.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\svsannik\.m2\repository\org\codehaus\jackson\jackson-core-asl\1.9.13\jackson-core-asl-1.9.13.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Program Files\Java\jre1.8.0_131\lib\rt.jar</AuxClasspathEntry>
+    <SrcDir>C:\Users\svsannik\workspace\foodoraTest\foodoraProject\foodoraProject\src\main\java</SrcDir>
+    <SrcDir>C:\Users\svsannik\workspace\foodoraTest\foodoraProject\foodoraProject\src\test\java</SrcDir>
+    <Cloud id="edu.umd.cs.findbugs.cloud.doNothingCloud" online="false"></Cloud>
+  </Project>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" rank="19" abbrev="Dm" category="I18N" first="1">
+    <Class classname="com.example.rest.AuthenticationFilter">
+      <SourceLine classname="com.example.rest.AuthenticationFilter" sourcefile="AuthenticationFilter.java" sourcepath="com/example/rest/AuthenticationFilter.java"/>
+    </Class>
+    <Method classname="com.example.rest.AuthenticationFilter" name="filter" signature="(Ljavax/ws/rs/container/ContainerRequestContext;)V" isStatic="false">
+      <SourceLine classname="com.example.rest.AuthenticationFilter" start="39" end="76" startBytecode="0" endBytecode="539" sourcefile="AuthenticationFilter.java" sourcepath="com/example/rest/AuthenticationFilter.java"/>
+    </Method>
+    <Method classname="java.lang.String" name="&lt;init&gt;" signature="([B)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.lang.String"/>
+    </Method>
+    <SourceLine classname="com.example.rest.AuthenticationFilter" start="56" end="56" startBytecode="119" endBytecode="119" sourcefile="AuthenticationFilter.java" sourcepath="com/example/rest/AuthenticationFilter.java"/>
+    <SourceLine classname="com.example.rest.AuthenticationFilter" start="56" end="56" startBytecode="119" endBytecode="119" sourcefile="AuthenticationFilter.java" sourcepath="com/example/rest/AuthenticationFilter.java"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" rank="19" abbrev="Dm" category="I18N" first="1">
+    <Class classname="com.example.rest.AuthenticationFilter">
+      <SourceLine classname="com.example.rest.AuthenticationFilter" sourcefile="AuthenticationFilter.java" sourcepath="com/example/rest/AuthenticationFilter.java"/>
+    </Class>
+    <Method classname="com.example.rest.AuthenticationFilter" name="filter" signature="(Ljavax/ws/rs/container/ContainerRequestContext;)V" isStatic="false">
+      <SourceLine classname="com.example.rest.AuthenticationFilter" start="39" end="76" startBytecode="0" endBytecode="539" sourcefile="AuthenticationFilter.java" sourcepath="com/example/rest/AuthenticationFilter.java"/>
+    </Method>
+    <Method classname="java.lang.String" name="getBytes" signature="()[B" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.lang.String"/>
+    </Method>
+    <SourceLine classname="com.example.rest.AuthenticationFilter" start="56" end="56" startBytecode="113" endBytecode="113" sourcefile="AuthenticationFilter.java" sourcepath="com/example/rest/AuthenticationFilter.java"/>
+    <SourceLine classname="com.example.rest.AuthenticationFilter" start="56" end="56" startBytecode="113" endBytecode="113" sourcefile="AuthenticationFilter.java" sourcepath="com/example/rest/AuthenticationFilter.java"/>
+  </BugInstance>
+  <BugInstance type="DLS_DEAD_LOCAL_STORE" priority="2" rank="17" abbrev="DLS" category="STYLE" first="1">
+    <Class classname="com.example.rest.CustomerServiceTest">
+      <SourceLine classname="com.example.rest.CustomerServiceTest" sourcefile="CustomerServiceTest.java" sourcepath="com/example/rest/CustomerServiceTest.java"/>
+    </Class>
+    <Method classname="com.example.rest.CustomerServiceTest" name="deleteCustomerTest" signature="()V" isStatic="false">
+      <SourceLine classname="com.example.rest.CustomerServiceTest" start="105" end="113" startBytecode="0" endBytecode="55" sourcefile="CustomerServiceTest.java" sourcepath="com/example/rest/CustomerServiceTest.java"/>
+    </Method>
+    <LocalVariable name="responseMsg" register="4" pc="94" role="LOCAL_VARIABLE_NAMED"/>
+    <SourceLine classname="com.example.rest.CustomerServiceTest" start="109" end="109" startBytecode="92" endBytecode="92" sourcefile="CustomerServiceTest.java" sourcepath="com/example/rest/CustomerServiceTest.java"/>
+    <SourceLine classname="com.example.rest.CustomerServiceTest" start="109" end="109" startBytecode="92" endBytecode="92" sourcefile="CustomerServiceTest.java" sourcepath="com/example/rest/CustomerServiceTest.java"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.LOCAL_NAME" value="responseMsg"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.METHOD_RESULT" value="true"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.NO_LOADS" value="true"/>
+  </BugInstance>
+  <BugInstance type="DLS_DEAD_LOCAL_STORE" priority="2" rank="17" abbrev="DLS" category="STYLE" first="1">
+    <Class classname="com.example.rest.CustomerServiceTest">
+      <SourceLine classname="com.example.rest.CustomerServiceTest" sourcefile="CustomerServiceTest.java" sourcepath="com/example/rest/CustomerServiceTest.java"/>
+    </Class>
+    <Method classname="com.example.rest.CustomerServiceTest" name="updateCustomerTest" signature="()V" isStatic="false">
+      <SourceLine classname="com.example.rest.CustomerServiceTest" start="94" end="101" startBytecode="0" endBytecode="42" sourcefile="CustomerServiceTest.java" sourcepath="com/example/rest/CustomerServiceTest.java"/>
+    </Method>
+    <LocalVariable name="responseMsg" register="4" pc="69" role="LOCAL_VARIABLE_NAMED"/>
+    <SourceLine classname="com.example.rest.CustomerServiceTest" start="97" end="97" startBytecode="67" endBytecode="67" sourcefile="CustomerServiceTest.java" sourcepath="com/example/rest/CustomerServiceTest.java"/>
+    <SourceLine classname="com.example.rest.CustomerServiceTest" start="97" end="97" startBytecode="67" endBytecode="67" sourcefile="CustomerServiceTest.java" sourcepath="com/example/rest/CustomerServiceTest.java"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.LOCAL_NAME" value="responseMsg"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.METHOD_RESULT" value="true"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.NO_LOADS" value="true"/>
+  </BugInstance>
+  <BugInstance type="VA_FORMAT_STRING_USES_NEWLINE" priority="2" rank="20" abbrev="FS" category="BAD_PRACTICE" first="1">
+    <Class classname="com.example.rest.Main">
+      <SourceLine classname="com.example.rest.Main" sourcefile="Main.java" sourcepath="com/example/rest/Main.java"/>
+    </Class>
+    <Method classname="com.example.rest.Main" name="main" signature="([Ljava/lang/String;)V" isStatic="true">
+      <SourceLine classname="com.example.rest.Main" start="40" end="45" startBytecode="0" endBytecode="103" sourcefile="Main.java" sourcepath="com/example/rest/Main.java"/>
+    </Method>
+    <Method classname="java.lang.String" name="format" signature="(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;" isStatic="true" role="METHOD_CALLED">
+      <SourceLine classname="java.lang.String"/>
+    </Method>
+    <String value="Jersey app started with WADL available at %sapplication.wadl\nHit enter to stop it..." role="STRING_FORMAT_STRING"/>
+    <SourceLine classname="com.example.rest.Main" start="41" end="41" startBytecode="18" endBytecode="18" sourcefile="Main.java" sourcepath="com/example/rest/Main.java"/>
+  </BugInstance>
+  <Errors errors="0" missingClasses="0"></Errors>
+  <FindBugsSummary timestamp="Sat, 1 Jul 2017 16:53:48 +0300" total_classes="7" referenced_classes="88" total_bugs="5" total_size="294" num_packages="1" java_version="1.8.0_131" vm_version="25.131-b11" cpu_seconds="173.22" clock_seconds="341.98" peak_mbytes="500.65" alloc_mbytes="1024.00" gc_seconds="2.16" priority_2="3" priority_1="2">
+    <PackageStats package="com.example.rest" total_bugs="5" total_types="7" total_size="294" priority_2="3" priority_1="2">
+      <ClassStats class="com.example.rest.AuthenticationFilter" sourceFile="AuthenticationFilter.java" interface="false" size="47" bugs="2" priority_1="2"/>
+      <ClassStats class="com.example.rest.Customer" sourceFile="Customer.java" interface="false" size="42" bugs="0"/>
+      <ClassStats class="com.example.rest.CustomerService" sourceFile="CustomerService.java" interface="false" size="37" bugs="0"/>
+      <ClassStats class="com.example.rest.CustomerServiceTest" sourceFile="CustomerServiceTest.java" interface="false" size="78" bugs="2" priority_2="2"/>
+      <ClassStats class="com.example.rest.Customers" sourceFile="Customers.java" interface="false" size="43" bugs="0"/>
+      <ClassStats class="com.example.rest.CustomersTest" sourceFile="CustomersTest.java" interface="false" size="33" bugs="0"/>
+      <ClassStats class="com.example.rest.Main" sourceFile="Main.java" interface="false" size="14" bugs="1" priority_2="1"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="de.tobject.findbugs.builder.FindBugs2Eclipse" totalMilliseconds="444" invocations="2" avgMicrosecondsPerInvocation="222496" maxMicrosecondsPerInvocation="277063" standardDeviationMircosecondsPerInvocation="54567"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="391" invocations="788" avgMicrosecondsPerInvocation="496" maxMicrosecondsPerInvocation="34323" standardDeviationMircosecondsPerInvocation="1979"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="170" invocations="88" avgMicrosecondsPerInvocation="1935" maxMicrosecondsPerInvocation="38011" standardDeviationMircosecondsPerInvocation="4877"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="154" invocations="790" avgMicrosecondsPerInvocation="195" maxMicrosecondsPerInvocation="1247" standardDeviationMircosecondsPerInvocation="132"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNoSideEffectMethods" totalMilliseconds="138" invocations="88" avgMicrosecondsPerInvocation="1573" maxMicrosecondsPerInvocation="28468" standardDeviationMircosecondsPerInvocation="3984"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="81" invocations="258" avgMicrosecondsPerInvocation="316" maxMicrosecondsPerInvocation="5701" standardDeviationMircosecondsPerInvocation="478"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.JavaClassAnalysisEngine" totalMilliseconds="51" invocations="146" avgMicrosecondsPerInvocation="352" maxMicrosecondsPerInvocation="22420" standardDeviationMircosecondsPerInvocation="1924"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.OverridingEqualsNotSymmetrical" totalMilliseconds="50" invocations="88" avgMicrosecondsPerInvocation="570" maxMicrosecondsPerInvocation="16975" standardDeviationMircosecondsPerInvocation="2232"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.IsNullValueDataflowFactory" totalMilliseconds="49" invocations="51" avgMicrosecondsPerInvocation="962" maxMicrosecondsPerInvocation="12390" standardDeviationMircosecondsPerInvocation="1813"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.MethodGenFactory" totalMilliseconds="47" invocations="51" avgMicrosecondsPerInvocation="936" maxMicrosecondsPerInvocation="39384" standardDeviationMircosecondsPerInvocation="5440"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteDirectlyRelevantTypeQualifiers" totalMilliseconds="42" invocations="88" avgMicrosecondsPerInvocation="486" maxMicrosecondsPerInvocation="4845" standardDeviationMircosecondsPerInvocation="975"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.NullDerefAndRedundantComparisonFinder" totalMilliseconds="40" invocations="51" avgMicrosecondsPerInvocation="801" maxMicrosecondsPerInvocation="5054" standardDeviationMircosecondsPerInvocation="999"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ValueNumberDataflowFactory" totalMilliseconds="40" invocations="53" avgMicrosecondsPerInvocation="768" maxMicrosecondsPerInvocation="13845" standardDeviationMircosecondsPerInvocation="1874"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FunctionsThatMightBeMistakenForProcedures" totalMilliseconds="40" invocations="88" avgMicrosecondsPerInvocation="457" maxMicrosecondsPerInvocation="10316" standardDeviationMircosecondsPerInvocation="1195"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.UnconditionalValueDerefDataflowFactory" totalMilliseconds="39" invocations="51" avgMicrosecondsPerInvocation="779" maxMicrosecondsPerInvocation="13930" standardDeviationMircosecondsPerInvocation="1993"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.TypeDataflowFactory" totalMilliseconds="39" invocations="52" avgMicrosecondsPerInvocation="761" maxMicrosecondsPerInvocation="11494" standardDeviationMircosecondsPerInvocation="1609"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindOpenStream" totalMilliseconds="38" invocations="7" avgMicrosecondsPerInvocation="5554" maxMicrosecondsPerInvocation="30249" standardDeviationMircosecondsPerInvocation="10237"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History>
+    <AppVersion sequence="0" timestamp="1498917894128" release="" codeSize="0" numClasses="0"/>
+  </History>
+</BugCollection>
